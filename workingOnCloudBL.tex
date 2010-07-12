@@ -1,0 +1,58 @@
+\section{Working on Cloud-Bio-Linux - the basics}
+
+\subsection{The process in a nutshell}
+\paragraph{}The general process you will follow when working with Cloud-Bio-Linux is:
+\begin{enumerate}
+\item Start up a Cloud-Bio-Linux instance
+\item Log into your Cloud-Bio-Linux instance
+\item Log out of the  Cloud-Bio-Linux instance
+\item Still want to work on this instance? You can log into it and out of it as often as you like. 
+\item When you're really finished, and don't need the Cloud-Bio-Linux instance anymore, stop the instance
+\end{enumerate}
+
+\paragraph{}This chapter leads you through the above process, step by step, and focusses on how you can start up and work using a graphical Bio-Linux desktop.
+
+\paragraph{}Of course, there are other things that you may wish to do, like save your instance for use again later, or share it with others. These things are covered in the next chapter: \textbf{Working on Cloud-Bio-Linux - the extras}.
+
+\paragraph{A note about charging:} 
+\begin{itemize}
+\item \textbf{You will be charged for the time your instance is running.} It's not about when you're logged into it that counts. Charging for the instance terminates when you terminate the instance. When you do this, all your data and files will be deleted, along with the running instance. Check out the Working on Cloud-Bio-Linux - the extras and the Working with Data section sections for information on how to avoid losing your work. 
+\item \textbf{You are charged by the time-hour.} This means that if you start up an instance at 1:55pm and use it until 2:05pm, you are charged for two hours - because your instance was running in two different hours of the clock. 
+
+\end{itemize}
+
+\subsection{Starting up a Cloud-Bio-Linux instance}
+\paragraph{This document focusses on using the \href{http://console.aws.amazon.com/ec2/home}{AWS Management Console}, a web-interface, for starting up Cloud-Bio-Linux.}
+\begin{enumerate}
+\item Go to the \href{http://console.aws.amazon.com/ec2/home}{EC2 Management Console URL: http://console.aws.amazon.com/ec2/home}
+\item You should see a button saying \textbf{Launch instance}. Click on this. 
+\item You are presented with a window called \textbf{Request Instances Wizard}. 
+\item To start up Cloud-Bio-Linux, go to the \textbf{Community AMIs tab} and search All Images for the term \textbf{biolinux}. This will bring up a list of available Cloud-Bio-Linux images.  In July 2010, these images were named with a date. We recommend that you pick the most recent image.
+\item Once you have chosen your instance, leave the selection \textbf{Launch Instances} chosen in the next window presented to you.
+\item Click on the Continue Button at the bottom of the window. \emph{(Can't see a Continue button? Check out the FAQ.)}
+\item Leave the Advanced options on the next page alone this time. \emph{Note that you will not be able to change any of these things in a running instance – so if you are going to change these things for instances you start up in future, you need to do it as part of the instantiation process. You can't change your mind for a running instance.}
+\item In the next window, you'll need to provide the name of your Key Pair. \emph{If you created a key pair earlier, but are not offered the option of using it, and if you created your keys in the same session you are currently logged into, try logging out of Amazon and logging back in again.}
+\item Once you have provided a key pair name, the next window will ask about your preferred security settings. The defaults are to set up the firewall to allow access by SSH (port 22) and HTTP (port 80). This is fine for many purposes, but if you will be running MySQL or postgreSQL for example, you'll need to alter these settings. Check out fhe FAQ for more on this.
+\item Once you've done all this, you should be able to review the information you've provided, and if you're happy click on the \textbf{Launch instance} button.
+\end{enumerate}
+
+\paragraph{}If you go back to your \href{http://console.aws.amazon.com/ec2/home}{Amazon EC2 home area} and click on the Instances link in the left hand pane, you should see your Cloud-Bio-Linux instance starting up. When you see a green icon with the word running beside it, your instance is ready to log into.
+
+\subsection{Logging into graphical desktop using NX}
+%FILL ME IN!
+
+
+\subsection{Logging into a command terminal using ssh}
+
+\subsection{Logging out of your Cloud-Bio-Linux instance}
+
+\subsection{Terminating your Cloud-Bio-Linux instance}
+
+
+
+
+
+\section{Working on Cloud-Bio-Linux - the extras}
+
+\subsection{Taking a snapshot of your Cloud-Bio-Linux Image}
+\subsection{Sharing your Cloud Bio-Linux instance}

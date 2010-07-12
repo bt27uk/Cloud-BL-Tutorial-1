@@ -1,0 +1,54 @@
+\section{Get ready to get on the Amazon cloud}
+
+\subsection{Get an Amazon AWS account}
+
+\paragraph{}Anyone can set up an account with Amazon to access their computer cloud. Just go to \href{http://aws.amazon.com}{http://aws.amazon.com} and sign up for an account. 
+
+\paragraph{The rest of this document assumes you have an account and you are logged into it.}
+
+
+
+\subsection{Get an Amazon EC2 Account}
+
+\paragraph{}There are various ways you can access the power of the Amazon cloud. For most people starting ou with Bio-Linux on the cloud, EC2 is the mostly likely route of interest. So EC2 is the route described in this document. 
+
+\paragraph{}You need to sign up for an EC2 account, in addition to your general Amazon aws account. 
+
+\paragraph{}To get your EC2 account, 
+\begin{enumerate}
+\item click on the Products tab on the \href{http://aws.amazon.com}{Amazon aws page},
+\item click on the Amazon Elastic Compute Cloud (EC2) link that appears in the Compute section of the listing, and
+\item click on the button in the right hand pane that says Sign up for Amazon EC2.  
+\item Complete the registration process.
+\end{enumerate}
+
+\subsection{Get an EC2 key pair}
+
+\paragraph{}After you've signed up for your account, Amazon will send you an email with a link in it to the Access Identifiers section of your account. Amazon provides a list of \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#EC2Credentials}{which credentials you need to do particular tasks}. 
+
+\paragraph{}If all you will be doing is starting up Bio-Linux using the Amazon (graphical) console, then you only need your \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#EC2KeyPairs}{Amazon EC2 Key Pair}. 
+
+
+\paragraph{To create a key pair:}
+\begin{enumerate}
+\item Go to the the \href{https://console.aws.amazon.com/ec2/home}{EC2 area on Amazon https://console.aws.amazon.com/ec2/home}.
+\item Click on the Key Pairs link under My Resources in the right hand area of the window. 
+\item Click on the Create Key Pair button near the top of the Key Pairs section of the window.
+\item Give your key pair a memorable name when prompted. Save your private key to a safe location. See the further information below about this. 
+\item Click on the link in the left hand pane to the EC2 Dashboard and then click on the Refresh button at the far right hand side of the window. 
+\end{enumerate}
+
+\paragraph{}You should now see that you have a key pair registered in the My Resources section. 
+You may need to log out of Amazon at this point and log back in for the key pairs to be noticed by the system when you try to start up Cloud-Bio-Linux. 
+
+
+\paragraph{}Each EC2 key pair includes a private key file and a public key file. \textbf{Save your private key to a secure and memorable location}. Don't lose it or share it. If you're working on Linux, adjust the permissions on your key file so it is readable only by you. Amazon does not make a copy of it, so make sure to save it to a safe location. 
+
+\paragraph{}If you plan to use the command line tools to instantiate an instance, you will also need to get your \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#X509Credentials}{X509 certificates}. This document assumes that you will only be using the graphical console, so this is not covered further here. 
+
+\paragraph{How the EC2 key pairs work}
+
+\paragraph{}When you launch a Cloud-Bio-Linux instance from  Amazon, you will specify a particular EC2 key pair name. The Amazon systeem puts a copy of your public key, which it has a record of, on the instance. You, as the (only!) holder of the private key will be the only one able to access the Bio-Linux instance you just started up. 
+
+
+
