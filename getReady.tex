@@ -2,22 +2,25 @@
 
 \subsection{Get an Amazon AWS account}
 
-\paragraph{}Anyone can set up an account with Amazon to access their computer cloud. Just go to \href{http://aws.amazon.com}{http://aws.amazon.com} and sign up for an account. 
+\paragraph{}Anyone can set up an account with Amazon to access their computer cloud. Just go to \href{http://aws.amazon.com}{http://aws.amazon.com} and sign up for an account.
 
-\paragraph{The rest of this document assumes you have an account and you are logged into it.}
+\begin{SCfigure}[][t]
+\includegraphics[width=40mm]{"images/aws_signup_button"}
+\caption[Sign up for AWS]{\label{fig:aws_signup}Signing up for an AWS account starts with the click of a button.}
+\end{SCfigure}
 
-
+\paragraph{The rest of this document assumes you have an AWS account and you are logged into it.}
 
 \subsection{Get an Amazon EC2 Account}
 
-\paragraph{}There are various ways you can access the power of the Amazon cloud. For most people starting ou with Bio-Linux on the cloud, EC2 is the mostly likely route of interest. So EC2 is the route described in this document. 
+\paragraph{}There are various ways you can access the power of the Amazon cloud. In this document, we describe using EC2. 
 
-\paragraph{}You need to sign up for an EC2 account, in addition to your general Amazon aws account. 
+\paragraph{}If you do not already have one, you need to sign up for an EC2 account. This is in addition to the general Amazon aws account you have if you followed the instructions above. 
 
-\paragraph{}To get your EC2 account, 
+\paragraph{To get your EC2 account}, 
 \begin{enumerate}
 \item click on the Products tab on the \href{http://aws.amazon.com}{Amazon aws page},
-\item click on the Amazon Elastic Compute Cloud (EC2) link that appears in the Compute section of the listing, and
+\item click on the \href{http://aws.amazon.com/ec2/}{Amazon Elastic Compute Cloud (EC2) link} that appears in the Compute section of the listing, and
 \item click on the button in the right hand pane that says Sign up for Amazon EC2.  
 \item Complete the registration process.
 \end{enumerate}
@@ -28,23 +31,35 @@
 
 \paragraph{}If all you will be doing is starting up Bio-Linux using the Amazon (graphical) console, then you only need your \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#EC2KeyPairs}{Amazon EC2 Key Pair}. 
 
+\begin{figure}[!hd]
+%the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
+\includegraphics[width=\maxwidth]{"images/EC2Homepage2"}
+\caption[EC2 Homepage]{\label{fig:ec2homepage}Your AWS home are will look something like this. Here, we are looking at the information under the EC2 tab (Red Circle). Blue Circle: your Key Pairs - if you don't have any, click on the link to create some. Purple Circle: You can easily launch any publicly available EC2 image from Amazon by clicking on this button. Green Circle: The number of running instances you have. If you have any, you can find out more about them by clicking on this link. Pink Cicle: If you add Key Pairs, or start up instances, you may need to hit the refresh button to see changes on your EC2 Dashboard.}
+\end{figure}
+
+
+\begin{SCfigure}[][t]
+%the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
+\includegraphics[width=60mm]{"images/keypairCreateButton"}
+\caption[Keypair creation]{\label{fig:keypaircreate}Keypair creation is simple - just click on the button and follow the instructions on screen.}
+\end{SCfigure}
 
 \paragraph{To create a key pair:}
 \begin{enumerate}
 \item Go to the the \href{https://console.aws.amazon.com/ec2/home}{EC2 area on Amazon https://console.aws.amazon.com/ec2/home}.
-\item Click on the Key Pairs link under My Resources in the right hand area of the window. 
-\item Click on the Create Key Pair button near the top of the Key Pairs section of the window.
+\item Click on the \emph{Key Pairs} link under My Resources in the right hand area of the window. See the blue circle in figure \href{fig:ec2homepage}.
+\item Click on the \emph{Create Key Pair} button near the top of the Key Pairs section of the window.
 \item Give your key pair a memorable name when prompted. Save your private key to a safe location. See the further information below about this. 
-\item Click on the link in the left hand pane to the EC2 Dashboard and then click on the Refresh button at the far right hand side of the window. 
+\item Click on the link in the left hand pane to go back to the \emph{EC2 Dashboard} and then click on the \emph{Refresh button} at the far right hand side of the window (see figure \href{fig:ec2homepage}). 
 \end{enumerate}
 
-\paragraph{}You should now see that you have a key pair registered in the My Resources section. 
+\paragraph{}You should now see that you have a key pair registered in the \emph{My Resources} section. 
 You may need to log out of Amazon at this point and log back in for the key pairs to be noticed by the system when you try to start up Cloud-Bio-Linux. 
 
 
-\paragraph{}Each EC2 key pair includes a private key file and a public key file. \textbf{Save your private key to a secure and memorable location}. Don't lose it or share it. If you're working on Linux, adjust the permissions on your key file so it is readable only by you. Amazon does not make a copy of it, so make sure to save it to a safe location. 
+\paragraph{}Each EC2 key pair includes a private key file and a public key file. \textbf{Save your private key to a secure and memorable location}. Don't lose it or share it. (Amazon does not make a copy of it.) If you're working on Linux, adjust the permissions on your key file so it is readable only by you. 
 
-\paragraph{}If you plan to use the command line tools to instantiate an instance, you will also need to get your \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#X509Credentials}{X509 certificates}. This document assumes that you will only be using the graphical console, so this is not covered further here. 
+\paragraph{}If you plan to use the command line tools to start up an instance, you will also need to get your \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#X509Credentials}{X509 certificates}. This document assumes that you will only be using the graphical console, so this is not covered further here. 
 
 \paragraph{How the EC2 key pairs work}
 

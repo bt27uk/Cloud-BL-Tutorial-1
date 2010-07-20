@@ -6,53 +6,117 @@
 \item Start up a Cloud-Bio-Linux instance
 \item Log into your Cloud-Bio-Linux instance
 \item Log out of the  Cloud-Bio-Linux instance
-\item Still want to work on this instance? You can log into it and out of it as often as you like. 
-\item When you're really finished, and don't need the Cloud-Bio-Linux instance anymore, stop the instance
+\item Still want to work on this instance? You can log into it and out of it as often as you like, or you can stop and start the instance, which can work out slightly cheaper.
+\item When you're really finished, and don't need the Cloud-Bio-Linux instance anymore, terminate the instance. You will stop being charged for this instance when it is terminated. \href{http://support.rightscale.com/06-FAQs/FAQ\_0149\_-_What\%27s_the_difference_between_Terminating_and_Stopping_an_EC2_Instance\%3F}{Stopping and terminating are different.}
 \end{enumerate}
 
-\paragraph{}This chapter leads you through the above process, step by step, and focusses on how you can start up and work using a graphical Bio-Linux desktop.
+\paragraph{}This chapter focusses on starting and logging into a full graphical Bio-Linux desktop on the cloud.
 
-\paragraph{}Of course, there are other things that you may wish to do, like save your instance for use again later, or share it with others. These things are covered in the next chapter: \textbf{Working on Cloud-Bio-Linux - the extras}.
+\paragraph{}Of course, there are other things that you may wish to do, like save your system and data for use again later, or share it with others. These things and more are covered in the {http://aws.amazon.com/ebs/}{official documentation for Elastic Block Storage}.
+%It would be good to write a basic intro, as the page linked here is hardly an easy newbie read. However, this is 
+%lower priority than getting the rest of this guide done.
 
 \paragraph{A note about charging:} 
+\paragraph{}The charging structure for Amazon EC2 is well defined, if quite detailed. It is important to understand what you are being charged for, so you can make good decisions about when using the cloud is a cost effective option, and when it is not. You will be charged for running instances, and also for things like bandwidth when transferring data on and off Amazon systems, and data volumes you wish to use later. Please read the \href{http://aws.amazon.com/ec2/pricing/}{Amazon pricing documentation} so you don't get surprised when you next see your credit card bill. 
+\paragraph{A couple of things to note when starting out:}
 \begin{itemize}
-\item \textbf{You will be charged for the time your instance is running.} It's not about when you're logged into it that counts. Charging for the instance terminates when you terminate the instance. When you do this, all your data and files will be deleted, along with the running instance. Check out the Working on Cloud-Bio-Linux - the extras and the Working with Data section sections for information on how to avoid losing your work. 
+\item \textbf{You will be charged for the time your instance is running.} It's not about when you're logged into it that counts. Charging for the instance terminates when you terminate the instance. When you do this, all your data and files will be deleted, along with the running instance. To avoid losing all your work, you can just transfer your files off the system onto your local machine - but be aware that you will be charged for the bandwidth you use. Alternatively, you could consider taking a snapshot. See the \href{http://aws.amazon.com/ebs/}{official documentation on Elastic Block Storage for more on this.} 
 \item \textbf{You are charged by the time-hour.} This means that if you start up an instance at 1:55pm and use it until 2:05pm, you are charged for two hours - because your instance was running in two different hours of the clock. 
 
 \end{itemize}
 
 \subsection{Starting up a Cloud-Bio-Linux instance}
 \paragraph{This document focusses on using the \href{http://console.aws.amazon.com/ec2/home}{AWS Management Console}, a web-interface, for starting up Cloud-Bio-Linux.}
+
+\begin{figure}[!hd]
+%the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
+\includegraphics[width=\maxwidth]{"images/requestInstance"}
+\caption[Start an Instance]{\label{fig:requestInstance}Search for the term "biolinux" in the Community instances. You are likely to find a number of different images available. Those listed here were available on July 20, 2010. We recommend you pick the one with the system you want (e.g. 32 bit or 64 bit) that has the most recent date included in the description.}
+\end{figure}
+
+
 \begin{enumerate}
 \item Go to the \href{http://console.aws.amazon.com/ec2/home}{EC2 Management Console URL: http://console.aws.amazon.com/ec2/home}
 \item You should see a button saying \textbf{Launch instance}. Click on this. 
 \item You are presented with a window called \textbf{Request Instances Wizard}. 
-\item To start up Cloud-Bio-Linux, go to the \textbf{Community AMIs tab} and search All Images for the term \textbf{biolinux}. This will bring up a list of available Cloud-Bio-Linux images.  In July 2010, these images were named with a date. We recommend that you pick the most recent image.
+\item To start up Cloud-Bio-Linux, go to the \textbf{Community AMIs tab} and search All Images for the term \textbf{biolinux}. This will bring up a list of available Cloud-Bio-Linux images. See figure \href{fig:requestInstance}.
 \item Once you have chosen your instance, leave the selection \textbf{Launch Instances} chosen in the next window presented to you.
 \item Click on the Continue Button at the bottom of the window. \emph{(Can't see a Continue button? Check out the FAQ.)}
-\item Leave the Advanced options on the next page alone this time. \emph{Note that you will not be able to change any of these things in a running instance – so if you are going to change these things for instances you start up in future, you need to do it as part of the instantiation process. You can't change your mind for a running instance.}
+\item Leave the Advanced options on the next page alone this time. \emph{Note that you will not be able to change any of these things in a running instance.}
+%The above item needs editing once the NX version is available, as you will likely have to provide 
+%user data to get that to work.
 \item In the next window, you'll need to provide the name of your Key Pair. \emph{If you created a key pair earlier, but are not offered the option of using it, and if you created your keys in the same session you are currently logged into, try logging out of Amazon and logging back in again.}
-\item Once you have provided a key pair name, the next window will ask about your preferred security settings. The defaults are to set up the firewall to allow access by SSH (port 22) and HTTP (port 80). This is fine for many purposes, but if you will be running MySQL or postgreSQL for example, you'll need to alter these settings. Check out fhe FAQ for more on this.
+\item Once you have provided a key pair name, the next window will ask about your preferred security settings. The defaults are to set up the firewall to allow access by SSH (port 22) and HTTP (port 80). 
+%I thought this was the case, but using the default firewall, I got an error saying that the ssh port wasn't open
+%may have to change instrux here if this turns out to be the case, and not something dumb I have done with my own setup.
+This is fine for many purposes, but if you will be running MySQL or postgreSQL for example, you'll need to alter these settings. Check out fhe FAQ for more on this.
 \item Once you've done all this, you should be able to review the information you've provided, and if you're happy click on the \textbf{Launch instance} button.
 \end{enumerate}
 
 \paragraph{}If you go back to your \href{http://console.aws.amazon.com/ec2/home}{Amazon EC2 home area} and click on the Instances link in the left hand pane, you should see your Cloud-Bio-Linux instance starting up. When you see a green icon with the word running beside it, your instance is ready to log into.
 
-\subsection{Logging into graphical desktop using NX}
+\subsection{Logging into your Cloud-Bio-Linux instance}
+
+
+\begin{figure}[!hd]
+\includegraphics[width=\maxwidth]{"images/instancesOptions"}
+\caption[Start an Instance]{\label{fig:instancesOptions}Click the Instance Actions button (pink circle) to bring up a menu with options including connecting to an instance you have already started up, stopping a running instance and terminating an instance.}
+\end{figure}
+
+
+\begin{itemize}
+\item Assuming you have already clicked on the Instances link on the left side of your \href{https://console.aws.amazon.com/ec2/home}{EC2 Dashboard}, click on the \textbf{Instance Actions} button near the top of the Instances page. See figure \href{fig:instancesOptions}.
+\item Choose \textbf{Connect}. A window will open containing directions about how to connect to your Cloud-Bio-Linux instance using ssh. You need to make a couple of changes to the suggested connection instructions - please see the sections below for more on this.
+\end{itemize}
+
+\paragraph{We recommend you log into a full graphical desktop using NX at this point}. Instructions on how to log in using command line ssh are given after the NX instructions below.
+
+\label{section:nx}
+\paragraph{}\textbf{Logging into graphical desktop using NX}
+
 %FILL ME IN!
+\paragraph{This information will be filled in as soon as it is available.}
 
 
-\subsection{Logging into a command terminal using ssh}
+\paragraph{}\textbf{Logging into a command terminal using ssh}
+
+\paragraph{}The instructions in the small window you saw after you chose to Connect to your instance suggest something like the following as an ssh command to use:
+
+\paragraph{ssh -i mykey.pem root@ec2-184-72-144-209.compute-1.amazonaws.com}
+
+\paragraph{Cloud-Bio-Linux is based on Ubuntu. To log into the instance, you need to \textbf{use the ubuntu user}.} The default for most systems on Amazon EC2 is to log in as the root user. 
+
+
+\paragraph{Note:} If you get a warning when you try to connect that suggests that your key cannot be found, it may mean that you have saved your key to a non-standard location and\/or given it a non-standard name. In this case add \href{http://nebc.nerc.ac.uk/tools/bio-linux/bio-linux-faq\#path}{path} information for your key to the command line so that the private key can be found from where you run the ssh connection command. For example, if your key is stored in a subdirectory of your home directory called \emph{keys}, and you want to log in as the \emph{ubuntu} user, you could log in using ssh and the command, you need to
+
+\paragraph{ssh -i /home/mydirectory/keys/mykey.pem ubuntu@ec2-184-72-144-209.compute-1.amazonaws.com}
+
+\paragraph{}If you are logging in using an ssh command line tool, you just need to type a command like that above into a terminal to log into your Cloud Bio-Linux instance. If you are logging in using Putty on Windows, you will need to \href{http://www.ualberta.ca/CNS/RESEARCH/LinuxClusters/pka-putty.html}{enter the relevant information into the Putty system} in order to connect.
+
+\paragraph{}If you're working from a Linux system, you should be able to run command line or graphical applications via the command line now. For most users, we still recommend connecting to your Cloud-Bio-Linux instance using the NX client, rather then directly using a command line ssh client, as NX connections provide access to a full Bio-Linux desktop, with menus, links, etc. 
+
+\paragraph{}On Windows, there are additional steps to take if you wish to run graphical programs. Our recommendation is to follow the instructions in the  \textbf{Logging into graphical desktop using NX} section above.
+
 
 \subsection{Logging out of your Cloud-Bio-Linux instance}
 
+\begin{SCfigure}[][t]
+%the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
+\includegraphics[width=50mm]{"images/nxshutdown"}
+\caption[Logging out of NX]{\label{fig:nxshutdown}Choosing the \textbf{Shut Down...} option in an NX session logs you out. Logging out is not the same as stopping or terminate your Cloud-Bio-Linux instance. You will still be charged while the instance is running - whether you are logged into it or not.}
+\end{SCfigure}
+
+\paragraph{From an NX connection} you need to go to the menu under the power button in the top right of your Cloud-Bio-Linux desktop and choose the option \textbf{Shut Down...}. See figure \href{fig:nxshutdown}.
+
+\paragraph{From an ssh command line (or Putty) connection} you need to type \textbf{exit} at the command prompt.
+
+
+\subsection{Stop your Cloud-Bio-Linux instance}
+
+\paragraph{}Highlight the instance you wish to stop in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Stop} under the Instance Action section of the menu. You will still be charged a fee if you have only stopped your instance, as opposed to terminating it. \href{http://support.rightscale.com/06-FAQs/FAQ\_0149\_-_What\%27s_the_difference_between_Terminating_and_Stopping_an_EC2_Instance\%3F}{Stopping and terminating are different.}
+
 \subsection{Terminating your Cloud-Bio-Linux instance}
 
+\paragraph{}Highlight the instance you wish to terminate in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Terminate} under the Instance Action section of the menu. In basic terms, terminating results in the system and all the files and data on it being deleted. If you have work you wish to save before terminating, or if you wish to keep a copy of this image such that you can use it later, without paying as much as you would for a running or stopped instance, please check out the Amazon documentation on EBS Volumes and taking snapshots of instances.
 
 
-
-
-\section{Working on Cloud-Bio-Linux - the extras}
-
-\subsection{Taking a snapshot of your Cloud-Bio-Linux Image}
-\subsection{Sharing your Cloud Bio-Linux instance}

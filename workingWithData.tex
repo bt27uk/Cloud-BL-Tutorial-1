@@ -1,0 +1,69 @@
+\section{Working with data on Cloud-Bio-Linux}\label{section:data}
+
+\paragraph{}For many bioinformatics tasks, you will want to work on your own data and files – for example, perhaps your own sequence data and blast databases. To do this, you will need to \emph{upload your files onto a machine that your Cloud-Bio-Linux instance can access}. Three options are covered in this chapter:
+\begin{enumerate}
+\item Copy your data directly onto the Cloud-Bio-Linux instance you are running. This would be alright if you were going to use this data only on this running instance and you're happy for it to be deleted when you terminate the instance.
+\item Copy your date on a separate EBS volume. This would be useful if you wish to store your files for use in other sessions, but you do not plan to keep the same running instance. (EBS Volumes are cheaper than running instances.) 
+\item If the data you want to use is already available on Amazon EBS volumes (for example, ENSEMBL data), you can access this easily, with no data transfer costs. 
+\end{enumerate}
+
+\subsection{Copying data onto your Cloud-Bio-Linux instance}
+
+\paragraph{}If you only need your data for a single Cloud-Bio-Linux instance, then you can just copy your data onto that instance directly.
+ 
+\paragraph{}Once you are logged into your Cloud-Bio-Linux instance, there are a number of ways to do this. For example, there are command line tools like \textbf{scp}, for copying files from a machine you have an account on, or \textbf{wget} to bring in data from public websites or ftp sites. 
+\paragraph{}Alternatively, if you are logged into the full graphical desktop using NX (see section \href{section:nx} on page \pageref{section:nx}), you can use the file browser to connect to a remote site and \textbf{drag and drop} your files to your running Bio-Linux instance. This is the method we focus on here.
+\begin{itemize}
+
+\item Go to the \textbf{Places} menu in the top taskbar and open up a file browser, for example by clicking on your Home Folder. 
+\item Now go to the \textbf{Go} menu and click on Location... (or just type Ctrl-L). 
+\item If you are going to copy files from a machine that you have login permissions on, then in the box next to the word \emph{Location} that appears in your file browser, type:
+\textbf{ssh://your.machine.com}, replacing your.machine.com with the address of the machine your files are on. Alternatively, if you wanted to copy files from a public ftp server, say, then you would enter something like the following in the Location box: 
+\\\textbf{ftp://ftp.someother.database.site}
+\end{itemize}
+
+\paragraph{}As a specific example, if I want to copy fasta files from the EMBL database sections, I would type the following into the Location box: 
+\\\textbf{ftp://ftp.ebi.ac.uk/pub/databases/fastafiles/emblrelease}
+
+\begin{figure}[!hd]
+\includegraphics[width=\maxwidth]{"images/graphicalFTP_full"}
+\caption[Drag and drop from remote machine]{\label{fig:graphicalftp}Copying files from remote machine is easy using the graphical File Browser, which can be launched from under the Places menu in the top taskbar. Choosing the Locations option under the Go menu of the file browser will allow you to type in a protocol (e.g. ftp, ssh) and a location. Here, a section of EMBL from the EBI is copied to my system using drag and drop between the two file browser windows.}
+\end{figure}
+
+\paragraph{}Now open another file browser by going to the Places menu. Navigate to the folder you wish to store the files in. Now you can just drag and drop your files from the remote machine onto your Cloud-Bio-Linux instance. See figure
+
+
+
+
+\paragraph{}This process is simple, and for one-off jobs, is perfectly adequate. Note that you do pay for the network traffic you generate in transferring the data. So if you are going to use the same dataset numerous times, it is worth considering setting up an EBS volume.
+
+\subsection{Using EBS volumes for data}
+
+\paragraph{}An Amazon EBS volume is what you need if 
+\begin{itemize}
+\item you are going to use a dataset a number of times, with gaps in time between uses, or
+\item you want to store your data such that you can connect to it from different Cloud-Bio-Linux (or other Amazon EC2 images), or
+\item if you wish to share your data with other people when they are working on an Amazon EC2 system.
+\end{itemize}
+
+\paragraph{A note on charging:}You will be charged for your Amazon EBS volume as long as it is in existence, and you will be charged for the space you request, not the space you are really using. So if you ask for 1Gb, you are paying for 1Gb, even if you only use 100Kb. 
+
+\paragraph{Creating your volume}
+
+\paragraph{Getting access to  your volume}
+
+\paragraph{Putting data on your volume}
+
+\paragraph{Unmounting your volume}
+
+\paragraph{Sharing your volume}
+
+\paragraph{Deleting your volume}
+
+
+\subsection{Accesing data already available on EBS volumes}
+
+\subsection{An example - blast databases on Cloud-Bio-Linux}
+
+
+

@@ -1,5 +1,8 @@
-\documentclass[pdflatex]{article}
-\usepackage{graphicx}
+\documentclass[pdftex]{article}
+\usepackage[pdftex]{graphicx}
+%\usepackage{graphicx}
+%\usepackage{floatflt}
+\usepackage{sidecap}
 \usepackage{hyperref}
 
 \begin{document}
@@ -7,9 +10,23 @@
 \author{Bela Tiwari}
 \maketitle
 
+\makeatletter
+	\def\maxwidth
+	{
+	\ifdim\Gin@nat@width>\linewidth
+		\linewidth
+	\else
+		\Gin@nat@width
+	\fi
+	}
+\makeatother
+
+
 \include{getReady}
 
 \include{workingOnCloudBL}
+
+%\include{working-theExtras}
 
 \include{workingWithData}
 
