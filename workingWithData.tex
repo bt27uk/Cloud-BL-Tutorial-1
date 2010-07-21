@@ -35,7 +35,7 @@
 
 
 
-\paragraph{}This process is simple, and for one-off jobs, is perfectly adequate. Note that you do pay for the network traffic you generate in transferring the data. So if you are going to use the same dataset numerous times, it is worth considering setting up an EBS volume.
+\paragraph{}This process is simple, and for one-off jobs, is perfectly adequate. Note that you will generally pay for the network traffic you generate in transferring the data\footnote{Until November 1, 2010, data transfer onto Amazon is free. The first Gb per month of transfer off is also free. (Information taken on July 21, 2010, with no guarantees to be correct at the time you are reading this document. Check out the \href{http://aws.amazon.com/ec2/}{official pricing list}.} So if you are going to use the same dataset numerous times, it is worth considering setting up an EBS volume rather than transferring data onto new instances. Even if this transfer is free, it will still generally take more time than mounting an EBS volume that already has your data on it.
 
 \subsection{Using EBS volumes for data}
 
@@ -46,24 +46,91 @@
 \item if you wish to share your data with other people when they are working on an Amazon EC2 system.
 \end{itemize}
 
-\paragraph{A note on charging:}You will be charged for your Amazon EBS volume as long as it is in existence, and you will be charged for the space you request, not the space you are really using. So if you ask for 1Gb, you are paying for 1Gb, even if you only use 100Kb. 
+\paragraph{}This guide presents only a small part of what is possible with EBS volumes. Please check out the \href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/ebs-api-overview.html}{EBS volume documentation on the Amazon website} for further information.
+
+\paragraph{A note on charging:}You will be \href{http://aws.amazon.com/ec2/}{charged for your Amazon EBS volume} as long as it is in existence, and you will be charged for the space you request, not the space you are really using. So if you ask for 1Gb, you are paying for 1Gb, even if you only use 100Kb. 
 
 \paragraph{Creating your volume}
 
+\paragraph{}We suggest that you have started up and have logged into an instance before creating your EBS volume. 
+\paragraph{}To create an EBS Volume:
+\begin{itemize}
+\item In the Navigation pane (left side) of the AWS Management Console, go to the Elastic Block Store area and choose \textbf{Volumes}. See figure \href{fig:volumecreate}.
+\item Click on the \textbf{Create Volume} button.
+\item Choose the same availability zones as the images you plan to use this volume with.
+\item After changing any other settings in this window, press the \textbf{Create} button.
+\item Wait until the yellow circle beside the word \emph{creating} is replaced by a blue circle beside the word \emph{available}.
+\end{itemize}
+
+\paragraph{}You now have an EBS volume - but this is not usable to copy your data onto yet. You first must mount it on your instance - this makes the volume accessible to you when you are logged into your instance. Here we cover how to do this from the Console. It is also easy to do using standard Linux command line tools to mount a volume.
+
+\begin{figure}[!hd]
+\includegraphics[width=\maxwidth]{"images/attachVolume-2"}
+\caption[Attaching a volume]{\label{fig:attachvolume1}Fill in the information requested. Note that both the instance and the EBS volume are in the same region. You just need to provide an unused device to attach your volume to. If you don't know what this means, and are starting up a Cloud-Bio-Linux instance, then use any of the suggested locations: /dev/sdf, /dev/sdg, /dev/sdh....up to /dev/sdp.}
+\end{figure}
+
+\begin{figure}[!hd]
+\includegraphics[width=\maxwidth]{"images/attachVolume-1"}
+\caption[Attaching a volume]{\label{fig:attachvolume1}Click on the Attach Volume button (Orange circle) to Attach a volume to an instance.}
+\end{figure}
+
+\begin{itemize}
+\item Click on the \textbf{Attach Volume} button on the Volumes page. See figure \href{fig:attachvolume1}. 
+\item Fill in the requested information. See figure \href{fig:attachvolume2}.
+\end{itemize}
+\paragraph{}Selecting any of your volumes in the AWS Management Console will bring up details of that volume at the bottom of the page. 
+
+
 \paragraph{Getting access to  your volume}
+\paragraph{}This is where it gets a bit ugly, as you need to log into your machine and use the command line for the next couple of steps. The first of these, \textbf{formatting your disk}, you only need to do the first time you use a particular volume. The second step, \textbf{mounting the volume}, needs to be done each time you want to access data on your volume from a new instance. There are ways to automate this, but these are not covered here. 
+
+\begin{enumerate}
+\item Log into your instance. If you are logged in using NX, start up a terminal window.
+\item \textbf{The first time you mount a volume for use only:} Type the following command to create an ext3 filesystem on your volume. Here I assume you have mounted it to \/dev\/sdf. 
+\\\textbf{sudo mkfs -t ext3 /dev/sdf }
+\item Now make a directory that you will mount the data volume onto. For example, this command creates a directory called \/mnt\/datasets:
+\\\textbf{sudo mkdir /mnt/datasets}
+\item Now mount your volume:
+\\\textbf{sudo mount /dev/sdf /mnt/datasets}
+\end{enumerate}
+
+\paragraph{}You will now be able to put data under the folder \/mnt\/datasets. All files under that area are on your EBS volume and will not be lost when your instance terminates. Ensure you read the section below on \textbf{unmounting your volume} as failure to do so before detaching your volume or terminating your instance could lead to data corruption. 
 
 \paragraph{Putting data on your volume}
 
+
+
 \paragraph{Unmounting your volume}
 
-\paragraph{Sharing your volume}
+\paragraph{This is a simple but vital step to avoid the possibility of data corruption.} Do this before you detach your volume or terminate your instance.
+
+\paragraph{}If you had attached your device to /dev/sdf, then you simply need to type:
+\\\textbf{umount -d /dev/sdf}
+
+\paragraph{Detaching your volume}
+\paragraph{}You can detach your volume from your instance using the AWS Management Console using the Detach Volume button on the console Navigation pane. Alternatively, your volumes will be detached automatically when you terminate your instance.
+
+\paragraph{Backing up or sharing your volume}
+\paragraph{}Check out the Userguide information on \href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/creating-snapshot-ebs.html}{creating snapshots} and on \href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/modifying-snapshot-permissions-ebs.html}{modifying permisisons on snapshots}.
+
 
 \paragraph{Deleting your volume}
+\paragraph{}You can delete your volume using the Delete button on the console Navigation pane. 
+
+\subsection{Accesing public datasets on Amazon}
+
+\begin{figure}[!hd]
+\includegraphics[width=\maxwidth]{"images/public-ensembl"}
+\caption[List public data]{\label{fig:ensembl}Click the Snapshot link in the Navigation pane. Then select Public Snapshots in the Viewing menu. Searching for a term such as \emph{ensembl} brings up all the public snapshots that contain ensembl in their description. }
+\end{figure}
+
+\paragraph{}Amazon makes some \href{http://aws.amazon.com/publicdatasets/}{public data sets available as snapshots}. You can just attach and mount these - no data transfer is necessary. Check out the \href{http://developer.amazonwebservices.com/connect/kbcategory.jspa?categoryID=243}{full public data set listing}. Finding datasets is easy: just search through the public snapshots for relevant terms. See figure \href{fig:ensembl}.
+
+\paragraph{}Amazon provides \href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/using-public-data-sets.html}{documentation on how to make use of these public data resources}.
 
 
-\subsection{Accesing data already available on EBS volumes}
+\paragraph{}
 
-\subsection{An example - blast databases on Cloud-Bio-Linux}
 
 
 

@@ -1,7 +1,14 @@
 \section{Working on Cloud-Bio-Linux - the basics}
 
 \subsection{The process in a nutshell}
-\paragraph{}The general process you will follow when working with Cloud-Bio-Linux is:
+
+\begin{figure}[!hd]
+%the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
+\includegraphics[width=\maxwidth]{"images/nutshell"}
+\caption[Start an Instance]{\label{fig:nutshell}The most basic process of working on Cloud-Bio-Linux on Amazon EC2 is depicted here. While you can log in and out of your instance as often as you like, you continue to be charged for it whether you are logged in or not. You can also stop and re-start instances (not shown here). When you are finished with an instance, you should terminate it. Once terminated, the system and all data on it are deleted. This is the simplest setup. There are, however, easy ways to store data and even whole systems, at a fraction of the price of a running image.}
+\end{figure}
+
+\paragraph{}The general process you will follow when working with Cloud-Bio-Linux is outlined in figure \href{fig:nutshell}:
 \begin{enumerate}
 \item Start up a Cloud-Bio-Linux instance
 \item Log into your Cloud-Bio-Linux instance
@@ -34,6 +41,11 @@
 \caption[Start an Instance]{\label{fig:requestInstance}Search for the term "biolinux" in the Community instances. You are likely to find a number of different images available. Those listed here were available on July 20, 2010. We recommend you pick the one with the system you want (e.g. 32 bit or 64 bit) that has the most recent date included in the description.}
 \end{figure}
 
+%\begin{figure}[!hd]
+%%the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
+%\includegraphics[width=\maxwidth]{"images/openssh"}
+%\caption[Start an Instance]{\label{fig:openssh}XXX text here}
+%\end{figure}
 
 \begin{enumerate}
 \item Go to the \href{http://console.aws.amazon.com/ec2/home}{EC2 Management Console URL: http://console.aws.amazon.com/ec2/home}
@@ -46,10 +58,7 @@
 %The above item needs editing once the NX version is available, as you will likely have to provide 
 %user data to get that to work.
 \item In the next window, you'll need to provide the name of your Key Pair. \emph{If you created a key pair earlier, but are not offered the option of using it, and if you created your keys in the same session you are currently logged into, try logging out of Amazon and logging back in again.}
-\item Once you have provided a key pair name, the next window will ask about your preferred security settings. The defaults are to set up the firewall to allow access by SSH (port 22) and HTTP (port 80). 
-%I thought this was the case, but using the default firewall, I got an error saying that the ssh port wasn't open
-%may have to change instrux here if this turns out to be the case, and not something dumb I have done with my own setup.
-This is fine for many purposes, but if you will be running MySQL or postgreSQL for example, you'll need to alter these settings. Check out fhe FAQ for more on this.
+\item Once you have provided a key pair name, the next window will ask about your preferred security settings. This is analagous to setting up your firewall. At a minimum you will need to enable ssh access - ssh is how you are going to connect, whether you do so via the command line or via a graphical NX connection. See figure \href{fig:openssh} for more information about how to do this. If you want to access web pages provided by your instance, then you also need to open a port for http. You will want to do this if, say, you wish to refer to the Bio-Linux documentation pages on your instance. If you will be running MySQL or postgreSQL for example, you'll need to enable access to these also.
 \item Once you've done all this, you should be able to review the information you've provided, and if you're happy click on the \textbf{Launch instance} button.
 \end{enumerate}
 
@@ -113,10 +122,13 @@ This is fine for many purposes, but if you will be running MySQL or postgreSQL f
 
 \subsection{Stop your Cloud-Bio-Linux instance}
 
-\paragraph{}Highlight the instance you wish to stop in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Stop} under the Instance Action section of the menu. You will still be charged a fee if you have only stopped your instance, as opposed to terminating it. \href{http://support.rightscale.com/06-FAQs/FAQ\_0149\_-_What\%27s_the_difference_between_Terminating_and_Stopping_an_EC2_Instance\%3F}{Stopping and terminating are different.}
+\paragraph{}Highlight the instance you wish to stop in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Stop} under the Instance Action section of the menu. 
+
+You will still be charged a fee if you have only stopped your instance, as opposed to terminating it, and 
+\href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/index.html?Concepts\_BootFromEBS.html\#Stop\_Start} {your data may still be deleted depending on how you have set things up}. \href{http://support.rightscale.com/06-FAQs/FAQ\_0149\_-_What\%27s\_the\_difference\_between\_Terminating\_and\_Stopping\_an\_EC2\_Instance\%3F}{Stopping and terminating are different.}
 
 \subsection{Terminating your Cloud-Bio-Linux instance}
 
-\paragraph{}Highlight the instance you wish to terminate in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Terminate} under the Instance Action section of the menu. In basic terms, terminating results in the system and all the files and data on it being deleted. If you have work you wish to save before terminating, or if you wish to keep a copy of this image such that you can use it later, without paying as much as you would for a running or stopped instance, please check out the Amazon documentation on EBS Volumes and taking snapshots of instances.
+\paragraph{}Highlight the instance you wish to terminate in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Terminate} under the Instance Action section of the menu. In basic terms, terminating results in the system and all the files and data on it being deleted. If you have work you wish to save before terminating, or if you wish to keep a copy of this image such that you can use it later, without paying as much as you would for a running instance, please check out the Amazon documentation on EBS Volumes and taking snapshots of instances.
 
 
