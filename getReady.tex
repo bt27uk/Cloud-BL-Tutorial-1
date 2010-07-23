@@ -32,9 +32,14 @@
 \paragraph{}If all you will be doing is starting up Bio-Linux using the Amazon (graphical) console, then you only need your \href{http://docs.amazonwebservices.com/AWSSecurityCredentials/1.0/AboutAWSCredentials.html#EC2KeyPairs}{Amazon EC2 Key Pair}. 
 
 \begin{figure}[!hd]
+	\fbox
+	{
+		\begin{minipage}{13cm}
 %the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
 \includegraphics[width=\maxwidth]{"images/EC2Homepage2"}
 \caption[EC2 Homepage]{\label{fig:ec2homepage}Your AWS home are will look something like this. Here, we are looking at the information under the EC2 tab (Red Circle). Blue Circle: your Key Pairs - if you don't have any, click on the link to create some. Purple Circle: You can easily launch any publicly available EC2 image from Amazon by clicking on this button. Green Circle: The number of running instances you have. If you have any, you can find out more about them by clicking on this link. Pink Cicle: If you add Key Pairs, or start up instances, you may need to hit the refresh button to see changes on your EC2 Dashboard.}
+		\end{minipage}
+	}
 \end{figure}
 
 
@@ -47,10 +52,10 @@
 \paragraph{To create a key pair:}
 \begin{enumerate}
 \item Go to the the \href{https://console.aws.amazon.com/ec2/home}{EC2 area on Amazon https://console.aws.amazon.com/ec2/home}.
-\item Click on the \emph{Key Pairs} link under My Resources in the right hand area of the window. See the blue circle in figure \href{fig:ec2homepage}.
+\item Click on the \emph{Key Pairs} link under My Resources in the right hand area of the window. See the blue circle in figure~\ref{fig:ec2homepage}.
 \item Click on the \emph{Create Key Pair} button near the top of the Key Pairs section of the window.
 \item Give your key pair a memorable name when prompted. Save your private key to a safe location. See the further information below about this. 
-\item Click on the link in the left hand pane to go back to the \emph{EC2 Dashboard} and then click on the \emph{Refresh button} at the far right hand side of the window (see figure \href{fig:ec2homepage}). 
+\item Click on the link in the left hand pane to go back to the \emph{EC2 Dashboard} and then click on the \emph{Refresh button} at the far right hand side of the window (see figure~\ref{fig:ec2homepage}). 
 \end{enumerate}
 
 \paragraph{}You should now see that you have a key pair registered in the \emph{My Resources} section. 

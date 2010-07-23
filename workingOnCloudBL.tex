@@ -3,12 +3,17 @@
 \subsection{The process in a nutshell}
 
 \begin{figure}[!hd]
+	\fbox
+	{
+		\begin{minipage}{13cm}
 %the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
 \includegraphics[width=\maxwidth]{"images/nutshell"}
 \caption[Start an Instance]{\label{fig:nutshell}The most basic process of working on Cloud-Bio-Linux on Amazon EC2 is depicted here. While you can log in and out of your instance as often as you like, you continue to be charged for it whether you are logged in or not. You can also stop and re-start instances (not shown here). When you are finished with an instance, you should terminate it. Once terminated, the system and all data on it are deleted. This is the simplest setup. There are, however, easy ways to store data and even whole systems, at a fraction of the price of a running image.}
+		\end{minipage}
+	}
 \end{figure}
 
-\paragraph{}The general process you will follow when working with Cloud-Bio-Linux is outlined in figure \href{fig:nutshell}:
+\paragraph{}The general process you will follow when working with Cloud-Bio-Linux is outlined in figure~\ref{fig:nutshell}:
 \begin{enumerate}
 \item Start up a Cloud-Bio-Linux instance
 \item Log into your Cloud-Bio-Linux instance
@@ -35,10 +40,14 @@
 \subsection{Starting up a Cloud-Bio-Linux instance}
 \paragraph{This document focusses on using the \href{http://console.aws.amazon.com/ec2/home}{AWS Management Console}, a web-interface, for starting up Cloud-Bio-Linux.}
 
-\begin{figure}[!hd]
+\begin{figure}[!hd]	\fbox
+	{
+		\begin{minipage}{13cm}
 %the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
 \includegraphics[width=\maxwidth]{"images/requestInstance"}
 \caption[Start an Instance]{\label{fig:requestInstance}Search for the term "biolinux" in the Community instances. You are likely to find a number of different images available. Those listed here were available on July 20, 2010. We recommend you pick the one with the system you want (e.g. 32 bit or 64 bit) that has the most recent date included in the description.}
+		\end{minipage}
+	}
 \end{figure}
 
 %\begin{figure}[!hd]
@@ -51,14 +60,14 @@
 \item Go to the \href{http://console.aws.amazon.com/ec2/home}{EC2 Management Console URL: http://console.aws.amazon.com/ec2/home}
 \item You should see a button saying \textbf{Launch instance}. Click on this. 
 \item You are presented with a window called \textbf{Request Instances Wizard}. 
-\item To start up Cloud-Bio-Linux, go to the \textbf{Community AMIs tab} and search All Images for the term \textbf{biolinux}. This will bring up a list of available Cloud-Bio-Linux images. See figure \href{fig:requestInstance}.
+\item To start up Cloud-Bio-Linux, go to the \textbf{Community AMIs tab} and search All Images for the term \textbf{biolinux}. This will bring up a list of available Cloud-Bio-Linux images. See figure~\ref{fig:requestInstance}.
 \item Once you have chosen your instance, leave the selection \textbf{Launch Instances} chosen in the next window presented to you.
 \item Click on the Continue Button at the bottom of the window. \emph{(Can't see a Continue button? Check out the FAQ.)}
 \item Leave the Advanced options on the next page alone this time. \emph{Note that you will not be able to change any of these things in a running instance.}
 %The above item needs editing once the NX version is available, as you will likely have to provide 
 %user data to get that to work.
 \item In the next window, you'll need to provide the name of your Key Pair. \emph{If you created a key pair earlier, but are not offered the option of using it, and if you created your keys in the same session you are currently logged into, try logging out of Amazon and logging back in again.}
-\item Once you have provided a key pair name, the next window will ask about your preferred security settings. This is analagous to setting up your firewall. At a minimum you will need to enable ssh access - ssh is how you are going to connect, whether you do so via the command line or via a graphical NX connection. See figure \href{fig:openssh} for more information about how to do this. If you want to access web pages provided by your instance, then you also need to open a port for http. You will want to do this if, say, you wish to refer to the Bio-Linux documentation pages on your instance. If you will be running MySQL or postgreSQL for example, you'll need to enable access to these also.
+\item Once you have provided a key pair name, the next window will ask about your preferred security settings. This is analagous to setting up your firewall. At a minimum you will need to enable ssh access - ssh is how you are going to connect, whether you do so via the command line or via a graphical NX connection. See figure~\ref{fig:openssh} for more information about how to do this. If you want to access web pages provided by your instance, then you also need to open a port for http. You will want to do this if, say, you wish to refer to the Bio-Linux documentation pages on your instance. If you will be running MySQL or postgreSQL for example, you'll need to enable access to these also.
 \item Once you've done all this, you should be able to review the information you've provided, and if you're happy click on the \textbf{Launch instance} button.
 \end{enumerate}
 
@@ -68,13 +77,18 @@
 
 
 \begin{figure}[!hd]
+	\fbox
+	{
+		\begin{minipage}{13cm}
 \includegraphics[width=\maxwidth]{"images/instancesOptions"}
 \caption[Start an Instance]{\label{fig:instancesOptions}Click the Instance Actions button (pink circle) to bring up a menu with options including connecting to an instance you have already started up, stopping a running instance and terminating an instance.}
+		\end{minipage}
+	}
 \end{figure}
 
 
 \begin{itemize}
-\item Assuming you have already clicked on the Instances link on the left side of your \href{https://console.aws.amazon.com/ec2/home}{EC2 Dashboard}, click on the \textbf{Instance Actions} button near the top of the Instances page. See figure \href{fig:instancesOptions}.
+\item Assuming you have already clicked on the Instances link on the left side of your \href{https://console.aws.amazon.com/ec2/home}{EC2 Dashboard}, click on the \textbf{Instance Actions} button near the top of the Instances page. See figure~\ref{fig:instancesOptions}.
 \item Choose \textbf{Connect}. A window will open containing directions about how to connect to your Cloud-Bio-Linux instance using ssh. You need to make a couple of changes to the suggested connection instructions - please see the sections below for more on this.
 \end{itemize}
 
@@ -115,20 +129,20 @@
 \caption[Logging out of NX]{\label{fig:nxshutdown}Choosing the \textbf{Shut Down...} option in an NX session logs you out. Logging out is not the same as stopping or terminate your Cloud-Bio-Linux instance. You will still be charged while the instance is running - whether you are logged into it or not.}
 \end{SCfigure}
 
-\paragraph{From an NX connection} you need to go to the menu under the power button in the top right of your Cloud-Bio-Linux desktop and choose the option \textbf{Shut Down...}. See figure \href{fig:nxshutdown}.
+\paragraph{From an NX connection} you need to go to the menu under the power button in the top right of your Cloud-Bio-Linux desktop and choose the option \textbf{Shut Down...}. See figure~\ref{fig:nxshutdown}.
 
 \paragraph{From an ssh command line (or Putty) connection} you need to type \textbf{exit} at the command prompt.
 
 
 \subsection{Stop your Cloud-Bio-Linux instance}
 
-\paragraph{}Highlight the instance you wish to stop in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Stop} under the Instance Action section of the menu. 
+\paragraph{}Highlight the instance you wish to stop in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure~\ref{fig:instancesOptions}) and choose \textbf{Stop} under the Instance Action section of the menu. 
 
 You will still be charged a fee if you have only stopped your instance, as opposed to terminating it, and 
 \href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/index.html?Concepts\_BootFromEBS.html\#Stop\_Start} {your data may still be deleted depending on how you have set things up}. \href{http://support.rightscale.com/06-FAQs/FAQ\_0149\_-_What\%27s\_the\_difference\_between\_Terminating\_and\_Stopping\_an\_EC2\_Instance\%3F}{Stopping and terminating are different.}
 
 \subsection{Terminating your Cloud-Bio-Linux instance}
 
-\paragraph{}Highlight the instance you wish to terminate in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure \href{fig:instancesOptions}) and choose \textbf{Terminate} under the Instance Action section of the menu. In basic terms, terminating results in the system and all the files and data on it being deleted. If you have work you wish to save before terminating, or if you wish to keep a copy of this image such that you can use it later, without paying as much as you would for a running instance, please check out the Amazon documentation on EBS Volumes and taking snapshots of instances.
+\paragraph{}Highlight the instance you wish to terminate in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure~\ref{fig:instancesOptions}) and choose \textbf{Terminate} under the Instance Action section of the menu. In basic terms, terminating results in the system and all the files and data on it being deleted. If you have work you wish to save before terminating, or if you wish to keep a copy of this image such that you can use it later, without paying as much as you would for a running instance, please check out the Amazon documentation on EBS Volumes and taking snapshots of instances.
 
 
