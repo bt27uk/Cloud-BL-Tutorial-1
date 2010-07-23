@@ -1,6 +1,4 @@
-\section{Working on Cloud-Bio-Linux - the basics}
-
-\subsection{The process in a nutshell}
+\section{The process in a nutshell}
 
 \begin{figure}[!hd]
 	\fbox
@@ -37,7 +35,7 @@
 
 \end{itemize}
 
-\subsection{Starting up a Cloud-Bio-Linux instance}
+\section{Starting up a Cloud-Bio-Linux instance}
 \paragraph{This document focusses on using the \href{http://console.aws.amazon.com/ec2/home}{AWS Management Console}, a web-interface, for starting up Cloud-Bio-Linux.}
 
 \begin{figure}[!hd]	\fbox
@@ -73,7 +71,7 @@
 
 \paragraph{}If you go back to your \href{http://console.aws.amazon.com/ec2/home}{Amazon EC2 home area} and click on the Instances link in the left hand pane, you should see your Cloud-Bio-Linux instance starting up. When you see a green icon with the word running beside it, your instance is ready to log into.
 
-\subsection{Logging into your Cloud-Bio-Linux instance}
+\section{Logging into your Cloud-Bio-Linux instance}
 
 
 \begin{figure}[!hd]
@@ -95,13 +93,13 @@
 \paragraph{We recommend you log into a full graphical desktop using NX at this point}. Instructions on how to log in using command line ssh are given after the NX instructions below.
 
 \label{section:nx}
-\paragraph{}\textbf{Logging into graphical desktop using NX}
+\subsection{}\textbf{Logging into graphical desktop using NX}
 
 %FILL ME IN!
 \paragraph{This information will be filled in as soon as it is available.}
 
 
-\paragraph{}\textbf{Logging into a command terminal using ssh}
+\subsection{}\textbf{Logging into a command terminal using ssh}
 
 \paragraph{}The instructions in the small window you saw after you chose to Connect to your instance suggest something like the following as an ssh command to use:
 
@@ -121,7 +119,7 @@
 \paragraph{}On Windows, there are additional steps to take if you wish to run graphical programs. Our recommendation is to follow the instructions in the  \textbf{Logging into graphical desktop using NX} section above.
 
 
-\subsection{Logging out of your Cloud-Bio-Linux instance}
+\section{Logging out of your Cloud-Bio-Linux instance}
 
 \begin{SCfigure}[][t]
 %the maxwidth variable is defined in the summary page: gettingStarted_Cloud-Bio-Linux.tex
@@ -134,14 +132,14 @@
 \paragraph{From an ssh command line (or Putty) connection} you need to type \textbf{exit} at the command prompt.
 
 
-\subsection{Stop your Cloud-Bio-Linux instance}
+\section{Stop your Cloud-Bio-Linux instance}
 
 \paragraph{}Highlight the instance you wish to stop in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure~\ref{fig:instancesOptions}) and choose \textbf{Stop} under the Instance Action section of the menu. 
 
 You will still be charged a fee if you have only stopped your instance, as opposed to terminating it, and 
 \href{http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/index.html?Concepts\_BootFromEBS.html\#Stop\_Start} {your data may still be deleted depending on how you have set things up}. \href{http://support.rightscale.com/06-FAQs/FAQ\_0149\_-_What\%27s\_the\_difference\_between\_Terminating\_and\_Stopping\_an\_EC2\_Instance\%3F}{Stopping and terminating are different.}
 
-\subsection{Terminating your Cloud-Bio-Linux instance}
+\section{Terminating your Cloud-Bio-Linux instance}
 
 \paragraph{}Highlight the instance you wish to terminate in the list on your Instances page. Click on the \textbf{Instance Actions} button (see figure~\ref{fig:instancesOptions}) and choose \textbf{Terminate} under the Instance Action section of the menu. In basic terms, terminating results in the system and all the files and data on it being deleted. If you have work you wish to save before terminating, or if you wish to keep a copy of this image such that you can use it later, without paying as much as you would for a running instance, please check out the Amazon documentation on EBS Volumes and taking snapshots of instances.
 

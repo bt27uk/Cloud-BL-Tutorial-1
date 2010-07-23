@@ -1,4 +1,4 @@
-\section{Working with data on Cloud-Bio-Linux}\label{section:data}
+\section{Introduction}\label{section:data}
 
 \paragraph{}For many bioinformatics tasks, you will want to work on your own data and files – for example, perhaps your own sequence data and blast databases. To do this, you will need to \emph{upload your files onto a machine that your Cloud-Bio-Linux instance can access}. Three options are covered in this chapter:
 \begin{enumerate}
@@ -7,7 +7,7 @@
 \item If the data you want to use is already available on Amazon EBS volumes (for example, ENSEMBL data), you can access this easily, with no data transfer costs. 
 \end{enumerate}
 
-\subsection{Copying data onto your Cloud-Bio-Linux instance}
+\section{Copying data onto your Cloud-Bio-Linux instance}
 
 \paragraph{}If you only need your data for a single Cloud-Bio-Linux instance, then you can just copy your data onto that instance directly.
  
@@ -42,7 +42,7 @@
 
 \paragraph{}This process is simple, and for one-off jobs, is perfectly adequate. Note that you will generally pay for the network traffic you generate in transferring the data\footnote{Until November 1, 2010, data transfer onto Amazon is free. The first Gb per month of transfer off is also free. (Information taken on July 21, 2010, with no guarantees to be correct at the time you are reading this document. Check out the \href{http://aws.amazon.com/ec2/}{official pricing list}.} So if you are going to use the same dataset numerous times, it is worth considering setting up an EBS volume rather than transferring data onto new instances. Even if this transfer is free, it will still generally take more time than mounting an EBS volume that already has your data on it.
 
-\subsection{Using EBS volumes for data}
+\section{Using EBS volumes for data}
 
 \paragraph{}An Amazon EBS volume is what you need if 
 \begin{itemize}
@@ -167,7 +167,7 @@
 \paragraph{Deleting your volume}
 \paragraph{}You can delete your volume using the Delete button on the console Navigation pane. 
 
-\subsection{Accesing public datasets on Amazon}
+\section{Accesing public datasets on Amazon}
 
 \begin{figure}[!hd]
 	\fbox
